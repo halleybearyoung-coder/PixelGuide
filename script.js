@@ -60,10 +60,10 @@ const App = () => {
                   Biomes
                 </h3>
                 <ul className="space-y-2 text-sm text-slate-300">
-                  <li><strong className="text-white">Plains:</strong> grass_block and oak_log generation.</li>
-                  <li><strong className="text-white">Desert:</strong> sand and sandstone. Home to Husks.</li>
-                  <li><strong className="text-white">Snow:</strong> snow_block and ice. Hostile night spawns.</li>
-                  <li><strong className="text-white">Jungle:</strong> jungle_log and melon. Tropical density.</li>
+                  <li><strong className="text-white font-mono text-[11px]">plains:</strong> grass_block and oak_log generation.</li>
+                  <li><strong className="text-white font-mono text-[11px]">desert:</strong> sand and sandstone. Home to husks.</li>
+                  <li><strong className="text-white font-mono text-[11px]">snowy_plains:</strong> snow_block and ice. Hostile night spawns.</li>
+                  <li><strong className="text-white font-mono text-[11px]">jungle:</strong> jungle_log and melon. Tropical density.</li>
                 </ul>
               </div>
               <div className="bg-slate-800/50 p-4 rounded-lg border border-white/5">
@@ -71,10 +71,10 @@ const App = () => {
                   <Layers size={20} className="text-purple-400" />
                   Technical Generation
                 </h3>
-                <ul className="space-y-2 text-sm text-slate-300">
-                  <li><strong className="text-white">mineshafts:</strong> Oak supports and cobweb.</li>
+                <ul className="space-y-2 text-sm text-slate-300 font-mono text-[11px]">
+                  <li><strong className="text-white">mineshafts:</strong> oak_planks supports and cobweb.</li>
                   <li><strong className="text-white">dungeons:</strong> stone_bricks fortresses.</li>
-                  <li><strong className="text-white">buried_treasure:</strong> Loot chests under sand.</li>
+                  <li><strong className="text-white">buried_treasure:</strong> loot_chest under sand.</li>
                 </ul>
               </div>
             </section>
@@ -147,7 +147,7 @@ const App = () => {
             </h2>
             <div className="space-y-4">
               <MobCard 
-                name="Reaper" 
+                name="poison_revenant" 
                 health="150 HP" 
                 type="Boss" 
                 desc="High-altitude flying skeletal entity. Phase 2 triggers at 50% HP (Skull emissive red). Summons skeleton mobs and leaves poison trails."
@@ -169,10 +169,10 @@ const App = () => {
                 color="border-indigo-400 bg-indigo-950/20"
               />
               <MobCard 
-                name="husk / zombie" 
+                name="husk / zombie / skeleton" 
                 health="20 HP" 
                 type="Hostile" 
-                desc="Undead threats. husk is immune to sunlight burning."
+                desc="Undead threats. husk is immune to sunlight burning. skeleton drops bone."
                 color="border-green-600 bg-green-950/20"
               />
             </div>
@@ -185,7 +185,7 @@ const App = () => {
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-bold">Recipe Identifiers</h2>
               <div className="flex gap-2">
-                 <span className="bg-amber-600/20 text-amber-500 text-[10px] px-2 py-1 rounded border border-amber-600/30 font-bold uppercase">crafting_table REQUIRED</span>
+                 <span className="bg-amber-600/20 text-amber-500 text-[10px] px-2 py-1 rounded border border-amber-600/30 font-bold uppercase tracking-tighter">crafting_table REQUIRED</span>
               </div>
             </div>
             
@@ -198,6 +198,7 @@ const App = () => {
                 <RecipeRow out="chest" reqs="8 oak_planks" table />
                 <RecipeRow out="stone_pickaxe" reqs="3 cobblestone + 2 stick" table />
                 <RecipeRow out="diamond_sword" reqs="2 diamond + 1 stick" table />
+                <RecipeRow out="furnace" reqs="8 cobblestone" table />
               </section>
               
               <section className="space-y-4">
@@ -219,18 +220,18 @@ const App = () => {
               <h2 className="text-3xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-2">
                 THE NULL RITUAL
               </h2>
-              <p className="text-indigo-200 text-sm mb-6">Piercing the veil requires technical precision.</p>
+              <p className="text-indigo-200 text-sm mb-6 font-mono tracking-tighter">TECHNICAL PROTOCOL: VOID_OPEN_SEQUENCE</p>
               
               <div className="space-y-4">
                 <div className="bg-black/40 p-5 rounded-xl border border-white/10">
                   <h4 className="text-white text-sm font-bold mb-3 flex items-center gap-2">
                     <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
-                    Technical Conditions
+                    Validation Sequence
                   </h4>
                   <ol className="list-decimal list-inside text-xs text-indigo-100 space-y-2 font-mono">
-                    <li>Place 1x <span className="text-amber-400 font-bold">oak_log</span> on level Y.</li>
-                    <li>Place 1x <span className="text-amber-400 font-bold">chest</span> directly on top.</li>
-                    <li>Verify zero adjacent solid blocks.</li>
+                    <li>Place 1x <span className="text-amber-400 font-bold">oak_log</span> on terrain.</li>
+                    <li>Place 1x <span className="text-amber-400 font-bold">chest</span> at Y+1 relative to log.</li>
+                    <li>Ensure no blocks adjacent to <span className="text-blue-300">chest</span>.</li>
                   </ol>
                 </div>
 
@@ -241,8 +242,8 @@ const App = () => {
                 </div>
 
                 <div className="bg-indigo-500/10 p-3 rounded-lg border border-indigo-500/20 text-center">
-                  <p className="text-[10px] text-indigo-400 italic font-mono">
-                    VALIDATION: EXACT QUANTITIES ONLY. NULL_PORTAL WILL GENERATE UPON CHEST CLOSURE.
+                  <p className="text-[10px] text-indigo-400 italic font-mono uppercase">
+                    Verification: exact item counts only. null_portal triggers on inventory_close.
                   </p>
                 </div>
               </div>
@@ -254,7 +255,7 @@ const App = () => {
                   <Wind size={18} />
                   null_dimension
                 </h3>
-                <p className="text-slate-300 text-xs leading-relaxed font-mono">TERRAIN: null_stone with electric blue sheen. ATMOSPHERE: High-density void particles.</p>
+                <p className="text-slate-300 text-xs leading-relaxed font-mono">terrain_base: null_stone. texture_pack: faithful_64x_null. fog_density: 0.12.</p>
               </div>
               <div className="bg-slate-800/80 p-5 rounded-xl border border-white/5">
                 <h3 className="font-bold text-blue-400 mb-3 flex items-center gap-2">
@@ -277,13 +278,13 @@ const App = () => {
             <h2 className="text-2xl font-bold">Kernel Developer Console</h2>
             <div className="bg-black/40 p-4 rounded-lg border border-white/5 flex items-center gap-3">
               <Terminal size={20} className="text-slate-500" />
-              <p className="text-xs text-slate-400 italic tracking-wide">Manual override for voxel engine parameters.</p>
+              <p className="text-xs text-slate-400 italic tracking-wide font-mono uppercase">System Kernel Build 1.21-Faithful</p>
             </div>
             
             <div className="grid gap-2 font-mono">
               <CmdRow cmd="/creative" desc="Swap survival/creative states." />
               <CmdRow cmd="/fly" desc="Toggle zero-G flight vectors." />
-              <CmdRow cmd="/give [identifier] [count]" desc="Example: /give diamond_sword 1" />
+              <CmdRow cmd="/give [item_id] [count]" desc="Example: /give diamond_sword 1" />
               <CmdRow cmd="/find [structure_id]" desc="Scans noise seeds for features." />
               <CmdRow cmd="/summon [mob_id]" desc="Example: /summon poison_revenant" />
               <CmdRow cmd="/tp [x] [y] [z]" desc="Spatial translocation." />
@@ -308,7 +309,7 @@ const App = () => {
               <Book className="text-white" size={28} />
             </div>
             <div>
-              <h2 className="font-black tracking-tighter text-2xl leading-none">PIXELCRAFT</h2>
+              <h2 className="font-black tracking-tighter text-2xl leading-none uppercase">PIXELCRAFT</h2>
               <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Guide v1.2: faithful-64x</span>
             </div>
           </div>
@@ -336,10 +337,10 @@ const App = () => {
           <div className="mt-12 p-5 bg-slate-900/60 rounded-2xl border border-white/5 backdrop-blur-md">
              <div className="flex items-center gap-2 mb-3">
                 <Terminal size={14} className="text-blue-400" />
-                <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Asset Mapping</span>
+                <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">faithful_64x Map</span>
              </div>
-             <p className="text-[11px] text-slate-400 leading-relaxed font-medium">
-                Kernel build: Pixelcraft. Mapping: minecraft_java_faithful_64. Neural analysis: gemini-2.5-flash.
+             <p className="text-[11px] text-slate-400 leading-relaxed font-mono tracking-tighter">
+                Kernel build: Pixelcraft. Protocol: minecraft_java_1.21. Neural analysis: gemini-2.5-flash.
              </p>
           </div>
         </aside>
@@ -366,7 +367,7 @@ const App = () => {
 const MobCard = ({ name, health, type, desc, summon, color }) => (
   <div className={`p-6 rounded-2xl border ${color} transition-all hover:translate-y-[-2px] hover:shadow-lg`}>
     <div className="flex justify-between items-start mb-3">
-      <h3 className="font-bold text-xl tracking-tight font-mono">{name}</h3>
+      <h3 className="font-bold text-xl tracking-tight font-mono text-blue-100">{name}</h3>
       <div className="text-right">
         <div className="text-[9px] font-black uppercase tracking-widest opacity-50 mb-1">{type}</div>
         <div className="text-xs font-mono font-bold text-white bg-black/30 px-2 py-0.5 rounded-full">{health}</div>
@@ -376,7 +377,7 @@ const MobCard = ({ name, health, type, desc, summon, color }) => (
     {summon && (
       <div className="pt-4 border-t border-white/5 flex items-start gap-3">
         <Zap size={16} className="text-yellow-400 mt-0.5 shrink-0" />
-        <p className="text-xs text-yellow-100/70 italic leading-relaxed">{summon}</p>
+        <p className="text-xs text-yellow-100/70 italic leading-relaxed font-mono tracking-tight">{summon}</p>
       </div>
     )}
   </div>
@@ -386,20 +387,20 @@ const RecipeRow = ({ out, reqs, table }) => (
   <div className="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors group">
     <div className="flex items-center gap-3">
       <div className="w-1.5 h-1.5 rounded-full bg-slate-600 group-hover:bg-blue-500 transition-colors" />
-      <span className="text-sm font-mono text-blue-200">{out}</span>
+      <span className="text-sm font-mono text-blue-200 uppercase text-[11px] tracking-tight">{out}</span>
     </div>
     <div className="flex items-center gap-3">
-      <span className="text-slate-500 text-[10px] font-mono">{reqs}</span>
+      <span className="text-slate-500 text-[10px] font-mono tracking-tighter">{reqs}</span>
       {table && <div className="w-3.5 h-3.5 bg-amber-600/40 border border-amber-600/50 rounded-sm" title="Requires technical table" />}
     </div>
   </div>
 );
 
 const SmeltRow = ({ input, output, color }) => (
-  <div className="flex items-center gap-4 text-[11px] font-mono font-bold">
+  <div className="flex items-center gap-4 text-[11px] font-mono font-bold uppercase tracking-tighter">
     <div className="text-right flex-1 text-slate-400">{input}</div>
     <Flame className="text-orange-500/80" size={16} />
-    <div className={`flex-1 ${color} tracking-tight`}>{output}</div>
+    <div className={`flex-1 ${color}`}>{output}</div>
   </div>
 );
 
@@ -413,7 +414,7 @@ const IngredientBox = ({ count, label }) => (
 const CmdRow = ({ cmd, desc }) => (
   <div className="group flex flex-col md:flex-row md:items-center justify-between p-4 rounded-xl bg-black/20 border border-white/5 hover:border-blue-500/40 transition-all hover:bg-black/40">
     <code className="text-blue-400 font-mono text-sm font-bold group-hover:text-blue-300">{cmd}</code>
-    <span className="text-xs text-slate-500 font-medium">{desc}</span>
+    <span className="text-xs text-slate-500 font-medium font-sans">{desc}</span>
   </div>
 );
 
